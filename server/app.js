@@ -57,7 +57,8 @@ socketHandlers(io);
 
 app.use(
   cors({
-    origin: CLIENT_URL, // allow to server to accept request from different origin (client)
+    //origin: CLIENT_URL, // allow to server to accept request from different origin (client)
+    origin: 'https://okidooki.netlify.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // allow session cookie from browser to pass through
   })
