@@ -102,8 +102,11 @@ mongoose
     }
   )
   .then(() => {
-    httpServer.listen(PORT || 5000, () => {
-      console.log('Starting server');
+    // httpServer.listen(PORT || 5000, () => {
+    //   console.log('Starting server');
+    // });
+    httpServer.listen(5001, () => {
+      console.log('Starting server on port 5001');
     });
   })
   .catch((err) => {
