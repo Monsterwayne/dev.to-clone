@@ -80,16 +80,25 @@ app.get('/', (req, res) => {
 //   throw new HttpError('Could not find the route', 404);
 // });
 
-app.use((error, req, res, next) => {
-  if (res.headerSent) {
-    //res already sent ? => don't send res, just forward the error
-    return next(error);
-  }
-  //else, send a res
-  res.status(error.code || 500);
-  res.json({
-    message: error.message || 'An unknown error occurred',
-  });
+// app.use((error, req, res, next) => {
+//   if (res.headerSent) {
+//     //res already sent ? => don't send res, just forward the error
+//     return next(error);
+//   }
+//   //else, send a res
+//   res.status(error.code || 500);
+//   res.json({
+//     message: error.message || 'An unknown error occurred',
+//   });
+// });
+
+app.use((err, req, res, next) => {
+    if (!err.statusCode) err.statusCode = 500; // Set a default status code if none is set
+    res.status(err.statusCode).json({
+        status: "error",
+        statusCode: err.statusCode,
+        message: err.message
+    });
 });
 
 mongoose
