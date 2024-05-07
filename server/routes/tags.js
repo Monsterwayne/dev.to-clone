@@ -14,6 +14,8 @@ const {
   unfollowTag,
 } = tagsControllers;
 
+router.use(checkAuth);
+
 router.get("/", getAllTags);
 
 router.get("/home", getPostsForHomeTags);
@@ -22,7 +24,7 @@ router.get("/:name", getTagByName);
 
 router.get("/:name/:tagId", getTagById);
 
-router.use(checkAuth);
+//router.use(checkAuth);
 
 router.put("/:tagId/follow", followTag);
 
